@@ -1,0 +1,10 @@
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+[functions]
+  # Email enrichment fetches third-party sites; give it room under Netlify's cap.
+  included_files = ["src/**"]

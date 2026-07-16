@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg:            #0A0F1E;
+  --bg-elev:       #111827;
+  --bg-panel:      #131B2C;
+  --bg-input:      #1A2333;
+  --bg-hover:      #1E2942;
+  --border:        rgba(255,255,255,0.07);
+  --border-strong: rgba(255,255,255,0.14);
+  --text:          #E8ECF3;
+  --text-dim:      #9AA3B7;
+  --text-mute:     #5F6A82;
+  --accent:        #A78BFA;
+  --accent-hover:  #8B6FF5;
+  --accent-tint:   rgba(167,139,250,0.12);
+  --accent-tint-strong: rgba(167,139,250,0.22);
+  --hot:           #F87171;
+  --hot-tint:      rgba(248,113,113,0.14);
+  --qual:          #34D399;
+  --qual-tint:     rgba(52,211,153,0.14);
+  --review:        #FBBF24;
+  --review-tint:   rgba(251,191,36,0.14);
+  --low:           #64748B;
+  --low-tint:      rgba(100,116,139,0.16);
+}
+
+html, body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+.mono { font-family: "IBM Plex Mono", ui-monospace, monospace; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
