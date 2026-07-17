@@ -39,3 +39,103 @@ html, body {
 .mono { font-family: "IBM Plex Mono", ui-monospace, monospace; }
 a { color: var(--accent); text-decoration: none; }
 a:hover { text-decoration: underline; }
+
+/* -------- Layout helpers -------- */
+.nav-container {
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  gap: 16px;
+  min-height: 56px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-panel);
+}
+.nav-tabs {
+  display: flex;
+  gap: 4px;
+  margin-left: 24px;
+}
+.nav-spacer { flex: 1; }
+.nav-pill { flex-shrink: 0; }
+.nav-mobile-select { display: none; }
+
+@media (max-width: 900px) {
+  .nav-container {
+    padding: 10px 14px;
+    gap: 10px;
+    min-height: 0;
+  }
+  .nav-tabs { display: none; }
+  .nav-mobile-select {
+    display: flex;
+    flex: 1;
+    min-width: 0;
+    justify-content: center;
+  }
+  .nav-mobile-select select {
+    background: var(--bg-input);
+    color: var(--text);
+    border: 1px solid var(--border-strong);
+    border-radius: 8px;
+    padding: 8px 32px 8px 12px;
+    font-size: 13px;
+    font-weight: 500;
+    font-family: inherit;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'><path fill='%239AA3B7' d='M6 8L2 4h8z'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    max-width: 100%;
+  }
+  .nav-mobile-select select:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
+  .nav-spacer { display: none; }
+}
+
+.filters-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr 2fr;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+@media (max-width: 767px) {
+  .filters-grid { grid-template-columns: 1fr; }
+}
+
+.results-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 12px;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.page-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 24px;
+}
+@media (max-width: 767px) {
+  .page-container { padding: 14px; }
+}
+
+/* -------- Mobile-friendly table -------- */
+@media (max-width: 767px) {
+  .results-table-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 0 -14px;
+    padding: 0 14px;
+  }
+  .brand-subtitle-mobile-hide { display: none; }
+}
+
+/* -------- Ensure buttons are always tappable -------- */
+button, select, input, [role="button"] {
+  touch-action: manipulation;
+}
