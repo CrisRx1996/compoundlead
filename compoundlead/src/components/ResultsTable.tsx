@@ -58,7 +58,7 @@ export default function ResultsTable({ leads }: { leads: Lead[] }) {
         overflowX: "auto",
       }}
     >
-      <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 14 }}>
+      <table style={{ width: "100%", minWidth: 1080, borderCollapse: "collapse", fontSize: 14 }}>
         <thead>
           <tr>
             {["Score", "Practice", "Phone", "Website", "Address", "City", "State", "ZIP", "Matched", ""].map((h, i) => (
@@ -100,7 +100,7 @@ export default function ResultsTable({ leads }: { leads: Lead[] }) {
                     <ScoreChip score={l.score} band={l.band} />
                   </td>
                   <td style={{ ...cellStyle, fontWeight: 500 }}>{l.name}</td>
-                  <td style={{ ...cellStyle, ...monoCell }}>{em(l.phone)}</td>
+                  <td style={{ ...cellStyle, ...monoCell, whiteSpace: "nowrap" }}>{em(l.phone)}</td>
                   <td style={cellStyle}>
                     {l.website ? (
                       <a
