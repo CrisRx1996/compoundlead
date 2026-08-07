@@ -4,9 +4,11 @@ import { dedupe } from "@/lib/dedupe";
 import { scoreLead } from "@/lib/score";
 import { groupById } from "@/lib/keywords";
 import { stateByAbbr } from "@/lib/territory";
+import { consumeDailySearch, resetsIn, DAILY_LIMIT } from "@/lib/limit";
 import type { SearchRequest, SearchResponse } from "@/lib/types";
 
 export const maxDuration = 26;
+export const dynamic = "force-dynamic";
 
 export async function POST(req: Request) {
   let body: SearchRequest;
@@ -37,6 +39,21 @@ export async function POST(req: Request) {
 
   if (!queries.length) {
     return NextResponse.json({ error: "None of those services are recognised." }, { status: 400 });
+  }
+
+  // Daily cap — only live searches consume paid Places quota.
+  if (isLive()) {
+    const limit = await consumeDailySearch();
+    if (!limit.allowed) {
+      return NextResponse.json(
+        {
+          error:
+            `Daily search limit reached (${limit.used}/${DAILY_LIMIT}). ` +
+            `Resets in ${resetsIn()}. Saved searches and exports still work.`,
+        },
+        { status: 429 },
+      );
+    }
   }
 
   const { leads, queriesRun, warnings } = await searchCity(city, state, queries);
